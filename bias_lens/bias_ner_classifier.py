@@ -2,7 +2,7 @@ import torch
 
 
 class BiasNERClassifier:
-    def __init__(self, model, tokenizer, id2label, max_length=128):
+    def __init__(self, model, tokenizer, id2label, max_length=128, sensitivity=0.5):
         """
         Initializes the bias NER classifier.
 
@@ -16,6 +16,7 @@ class BiasNERClassifier:
         self.tokenizer = tokenizer
         self.id2label = id2label
         self.max_length = max_length
+        self.sensitivity = sensitivity
         self.device = next(model.parameters()).device
 
     def predict(self, sentence):
@@ -36,7 +37,7 @@ class BiasNERClassifier:
             outputs = self.model(**inputs)
             logits = outputs.logits
             probabilities = torch.sigmoid(logits)
-            predicted_labels = (probabilities > 0.5).int()
+            predicted_labels = (probabilities > self.sensitivity).int()
 
         tokens = self.tokenizer.convert_ids_to_tokens(inputs["input_ids"][0])
         result = []
