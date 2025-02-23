@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "bias-lens"
-version = "0.0.4"
+version = "0.0.5"
 description = "A library for bias detection and explainable AI methods in NLP models."
 authors = ["bhavaniit24 <loganthan.20201212@iit.ac.lk>"]
 readme = "README.md"

@@ -1,4 +1,3 @@
-import matplotlib.pyplot as plt
 import shap
 
 from .probability_explainer_mixin import ProbabilityExplainerMixin
@@ -19,10 +18,6 @@ class ShapExplainer(ProbabilityExplainerMixin):
                 self.predict_proba, masker, output_names=list(self.id2label.values())
             )
             shap_values = explainer([text])
-            plt.figure(figsize=(12, 8))
-            shap.plots.text(shap_values, display=False)
-            plt.tight_layout()
-
             shap_explanation = {
                 "values": shap_values.values,
                 "base_values": shap_values.base_values,
