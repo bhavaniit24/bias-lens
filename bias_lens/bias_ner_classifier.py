@@ -1,9 +1,6 @@
 import torch
 
 
-import torch
-
-
 class BiasNERClassifier:
     def __init__(self, model, tokenizer, id2label, max_length=128, sensitivity=0.5):
         """
